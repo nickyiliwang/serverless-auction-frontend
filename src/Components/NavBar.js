@@ -47,7 +47,7 @@ const useStyles = makeStyles({
 });
 
 const NavBar = () => {
-  const { loginWithPopup, logout, isAuthenticated } = useAuth0();
+  const { user, loginWithPopup, logout, isAuthenticated } = useAuth0();
 
   const classes = useStyles();
 
@@ -71,7 +71,7 @@ const NavBar = () => {
             {isAuthenticated && (
               <div className={classes.profileAndLogin}>
                 <div className={classes.profile}>
-                  <Profile />
+                  <Profile user={user} />
                 </div>
                 <Button className={classes.button} onClick={() => logout({})}>
                   Sign out
