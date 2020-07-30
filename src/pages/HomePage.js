@@ -1,15 +1,8 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import FetchAuctions from "../Components/FetchAuctions";
 
 export default function HomePage() {
-  const {
-    isLoading,
-    isAuthenticated,
-    error,
-    user,
-    getIdTokenClaims,
-  } = useAuth0();
+  const { isLoading, error } = useAuth0();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -18,25 +11,10 @@ export default function HomePage() {
     return <div>Oops... {error.message}</div>;
   }
 
-  if (isAuthenticated) {
-    const getToken = async () => {
-      const tokenClaims = await getIdTokenClaims();
-      const token = tokenClaims.__raw;
-      return token;
-    };
-
-    return (
-      <div>
-        Hello {user.name}
-        <FetchAuctions token={getToken()} />
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <h1>Welcome to the Nick's Auction Service</h1>
-        <p>Please Sign in to use the service!</p>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>Welcome to the Nick's Auction Service</h1>
+      <p>Please Sign in to use the service!</p>
+    </div>
+  );
 }

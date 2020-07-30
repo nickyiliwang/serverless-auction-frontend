@@ -1,13 +1,13 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
+import { Card,  } from "@material-ui/core";
+import Countdown from "react-countdown";
 
 import {
   CardHeader,
   CardMedia,
   CardContent,
   CardActions,
-  Collapse,
   Avatar,
 } from "@material-ui/core";
 import moment from "moment";
@@ -94,11 +94,17 @@ export default function AuctionCard({ auctionToRender }) {
           display="block"
         >
           {status}
+          <Countdown
+            date={endingAt}
+            renderer={({ hours, minutes, seconds }) => (
+              <span>
+                {hours} hours {minutes} mins {seconds} secs
+              </span>
+            )}
+          />
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        {/* <EditArtModal {...props} /> */}
-        {/* <DeleteImage {...props} /> */}
         <IconButton
           onClick={handleExpandClick}
           aria-expanded={expanded}

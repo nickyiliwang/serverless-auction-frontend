@@ -18,3 +18,31 @@ export const fetchAuctions = async (token) => {
     console.error(error);
   }
 };
+
+export const createAuction = async (title, pictureBase64, token) => {
+  let auctionId;
+
+  try {
+    const createAuctionResult = await axios.post(
+      "/auction",
+      { title },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+
+    const auction = createAuctionResult.data;
+    auctionId = auction.id;
+
+    await axios.patch(`/auction/${auctionId}/picture`, pictureBase64, {
+      headers: {
+        Authorization: token,
+      },
+    });
+  } catch (error) {
+    alert("Could not create auction! Check console for more details.");
+    console.error(error);
+  }
+};

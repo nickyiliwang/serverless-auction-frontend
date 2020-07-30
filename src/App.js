@@ -1,9 +1,9 @@
 // src/App.js
 import React from "react";
-import HomePage from "./pages/HomePage";
+import AuctionsPage from "./pages/AuctionsPage";
 import NavBar from "./Components/NavBar";
-// import PrivateRoute from "./utils/PrivateRoute";
-import { Router, Route, Switch } from "react-router-dom";
+import PrivateRoute from "./utils/PrivateRoute";
+import { Router, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import "./App.css";
 
@@ -17,10 +17,8 @@ function App() {
         </header>
         <div className="wrapper">
           <Switch>
-            <Route path="/" exact component={HomePage} />
-            {/* <PrivateRoute path="/" exact component={AuctionsPage} />
-          <PrivateRoute path="/auctions" component={AuctionsPage} />
-          <PrivateRoute path="/create" component={CreateAuctionPage} /> */}
+            <PrivateRoute path="/" exact component={AuctionsPage} />
+            <PrivateRoute path="/auctions" component={AuctionsPage} />
           </Switch>
         </div>
       </Router>
