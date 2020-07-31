@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UploadModal({ token }) {
+export default function CreateAuctionModal({ token }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [base64, setBase64] = useState();
@@ -128,7 +128,6 @@ export default function UploadModal({ token }) {
                       <TextField
                         label="Enter an auction name"
                         name="creationDate"
-                        placeholder="Enter an auction name"
                         onChange={handleOnChange}
                       />
                     </Grid>

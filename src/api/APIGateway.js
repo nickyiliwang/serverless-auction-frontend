@@ -46,3 +46,20 @@ export const createAuction = async (title, pictureBase64, token) => {
     console.error(error);
   }
 };
+
+export const placeBid = async (id, amount, token) => {
+  try {
+    await axios.patch(
+      `/auction/${id}/bid`,
+      { amount },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+  } catch (error) {
+    alert("Could not place bid! Check console for more details.");
+    console.error(error);
+  }
+};

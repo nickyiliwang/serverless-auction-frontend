@@ -3,12 +3,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { makeStyles, Button } from "@material-ui/core";
 import Profile from "./Profile";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    background: "lightgrey",
+    background: "#DCDCDC",
     padding: "15px 0",
     marginBottom: 24,
     color: "black",
+    boxShadow: theme.shadows[5],
   },
   navbar: {
     display: "flex",
@@ -44,7 +45,7 @@ const useStyles = makeStyles({
       borderRadius: 30,
     },
   },
-});
+}));
 
 const NavBar = () => {
   const { user, loginWithPopup, logout, isAuthenticated } = useAuth0();

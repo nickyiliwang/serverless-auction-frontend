@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card,  } from "@material-ui/core";
+import { Card } from "@material-ui/core";
 import Countdown from "react-countdown";
 
 import {
@@ -15,15 +15,15 @@ import moment from "moment";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { blue } from "@material-ui/core/colors";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import ImageIcon from "@material-ui/icons/Image";
+import PlaceBid from "../Components/PlaceBid";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 350,
     maxWidth: 345,
-    margin: "20px 0",
+    margin: "20px 20px 20px 0",
   },
   media: {
     height: 0,
@@ -53,16 +53,11 @@ export default function AuctionCard({ auctionToRender }) {
     createdAt,
     endingAt,
     highestBid,
-    id,
-    pictureUrl,
     seller,
+    pictureUrl,
     status,
     title,
   } = auctionToRender;
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <Card className={classes.root}>
@@ -93,7 +88,7 @@ export default function AuctionCard({ auctionToRender }) {
           component="p"
           display="block"
         >
-          {status}
+          Time Remaining:
           <Countdown
             date={endingAt}
             renderer={({ hours, minutes, seconds }) => (
@@ -103,15 +98,42 @@ export default function AuctionCard({ auctionToRender }) {
             )}
           />
         </Typography>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          display="block"
+        >
+          Auction Status: {status}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          display="block"
+        >
+          Seller: {seller}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          display="block"
+        >
+          Highest Bid: {highestBid.amount}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          display="block"
+        >
+          Highest Bidder:{" "}
+          {highestBid.bidder ? highestBid.bidder : "No bidders yet"}
+        </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
+        <PlaceBid auctionToRender={auctionToRender} />
       </CardActions>
     </Card>
   );

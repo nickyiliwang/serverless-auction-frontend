@@ -23,5 +23,5 @@ export default function FetchAuctions({ token }) {
     });
   };
 
-  return <div>{auctionsToRender && renderAuctions()}</div>;
+  return <>{auctionsToRender && renderAuctions()}</>;
 }

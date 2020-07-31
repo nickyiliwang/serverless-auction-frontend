@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import FetchAuctions from "../Components/FetchAuctions";
-import UploadModal from "../Components/UploadModal";
+import CreateAuctionModal from "../Components/CreateAuctionModal";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles(() => ({
+  auctionCards: {
+    display: "flex",
+  },
+}));
 
 export default function AuctionsPage() {
   const { isAuthenticated, getIdTokenClaims } = useAuth0();
+  const classes = useStyles();
 
   useEffect(() => {
     const getToken = async () => {
@@ -22,8 +30,10 @@ export default function AuctionsPage() {
 
   return (
     <div>
-      <UploadModal token={token} />
-      <FetchAuctions token={token} />
+      <CreateAuctionModal token={token} />
+      <div className={classes.auctionCards}>
+        <FetchAuctions token={token} />
+      </div>
     </div>
   );
 }

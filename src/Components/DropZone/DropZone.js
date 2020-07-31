@@ -14,8 +14,6 @@ export default function MyDropZone({ setBase64 }) {
 
         reader.readAsDataURL(file);
         reader.onload = () => {
-          console.log(reader.result);
-
           setBase64(reader.result);
         };
       });
